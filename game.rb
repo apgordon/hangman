@@ -56,13 +56,12 @@ def play_game
     guess = gets.chomp
     
     if guess == @word
-      puts "Good guess!"
+      puts "Good guess, that's right!"
     else
       puts "Sorry, it was actually #{@word}."
     end
   else 
-    puts "Nicely done!"
+    puts "Nicely done!\n"
   end 
     
 end 
-

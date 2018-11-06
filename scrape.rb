@@ -1,8 +1,20 @@
+require "json"
+require "uri"
+require 'pry'
+require 'httparty'
+require './config'
+
 def get_origin
-  @page = Nokogiri::HTML(open("https://www.merriam-webster.com/dictionary/" + @word))
-  puts @page.title 
-  # puts @page_definition.xpath('//*[@id="entry-1"]/div/div/span/div/span').text
-  # puts "---ETYMOLOGY---"
-  # puts @page_definition.xpath('//*[@id="left-content"]/main/article/div[3]/div[2]/div/div/div/em').text
+
+  @url = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + @word + "?key=" + #APIKEY
+  @response = HTTParty.get(@url)
+  @et = @response[0]["et"].to_s
+  @et = @et[11..@et.length]
+  puts "Etymology:"
+  puts @et
 
 end
+
+
+
+
