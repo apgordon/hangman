@@ -19,7 +19,7 @@ def play_game
   
   puts "This word has #{@word.length} letters and means: #{@definition}"
   
-  until @guesses == 0 || @correct_letters.count == @word.length
+  until @guesses == 0 || @correct_letters.count + 1 == @word.length
     puts "#{@guesses} guesses left."
     print "Guess a letter: "
     guess = gets.chomp
@@ -51,14 +51,18 @@ def play_game
     end
   end
   
-  puts "OK, what's your guess?"
-  guess = gets.chomp
-  
-  if guess == @word
-    puts "Holy shit, you're right! It was #{@word}"
-  else
-    puts "Sorry, it was actually #{@word}."
-  end
-  
+  if @correct_letters.count + 1 < @word.length
+    puts "OK, what's your guess?"
+    guess = gets.chomp
+    
+    if guess == @word
+      puts "Good guess!"
+    else
+      puts "Sorry, it was actually #{@word}."
+    end
+  else 
+    puts "Nicely done!"
+  end 
+    
 end 
 
