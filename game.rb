@@ -1,13 +1,24 @@
 require 'nokogiri'
 require 'open-uri'
-require './scrape'
+require './lookup'
 
-get_word()
-set_up_game()
+
+
+def set_up_game
+  @guesses = 12
+  @guessed_letters = []
+  @correct_letters = []
+  @word = @random_word[0]
+  @word_letters = @word.split('')
+  @definition = @random_word[1]
+end
+
+set_up_game
+
 
 puts "This word has #{@word.length} letters and means: #{@definition}"
 
-until @guesses == 0
+until @guesses == 0 || @correct_letters.count == @word.length
   puts "#{@guesses} guesses left."
   print "Guess a letter: "
   guess = gets.chomp
@@ -48,4 +59,3 @@ else
   puts "Sorry, it was actually #{@word}."
 end
 
-get_definition()
